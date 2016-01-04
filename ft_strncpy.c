@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 09:50:01 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/04 19:00:59 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 20:00:09 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/21 20:01:55 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-# define CONVERTOR "sSpdDioOuUxXcC%"
-
-char	*ft_strcpy(char *dst, const char *src);
-char	*ft_strdup(const char *s1);
-
-typedef struct	s_type_format
+char	*ft_strncpy(char *dst, const char *src, size_t n)
 {
-	char	*flags;
-	int		min_weidth;
-	int		precision;
-	char	length_modefier[2];
-}				t_type_format;
+	size_t	i;
 
-int	ft_printf(const char *format, ...);
-
-#endif
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	while (i < n)
+	{
+		dst[i] = '\0';
+		i++;
+	}
+	return (dst);
+}

@@ -6,38 +6,47 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 09:48:34 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/04 16:00:49 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/04 19:00:49 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_find_procent(char *p, int *printd_ch)
+void	ft_putstr(char *s)
 {
-	int		ok;
-	char	*q;
+	while (*s)
+		write(1, s++, 1);
+	write(1, "\n", 1);
+}
 
-	while (*p)
+char	*ft_find_procent(char *p, int *printed_ch)
+{
+	while (*p != '%' && *p)
 	{
-		q = CONVERTOR;
-		ok = 0;
-		while (*q && ok == 0)
-			if (*q == *p)
-				ok = 1;
-			else
-				q++;
-		if (ok = 1)
-			return (p);
 		write(1, p, 1);
-		(*printed_ch)++;
 		p++;
+		(*printed_ch)++;
 	}
+	if (*p)
+		return (p);
 	return (NULL);
 }
 
 char	*ft_find_form_convertor(char *p)
 {
+	char	*q;
 
+	while (*p)
+	{
+		q = CONVERTOR;
+		while (*q)
+			if (*q == *p)
+				return (p);
+			else
+				q++;
+		p++;
+	}
+	return (NULL);
 }
 
 int		ft_printf(const char *format, ...)
@@ -45,23 +54,23 @@ int		ft_printf(const char *format, ...)
 	va_list ap;
 	char	*p;
 	char	*q;
-	char	*conv_spec;
+	//char	*conv_spec;
 	int		printed_ch;
 
 	printed_ch = 0;
 	va_start(ap, format);
-	p = (char *)format;
+	p = ft_strdup(format);
 	while (1)
 	{
 		p = ft_find_procent(p, &printed_ch);
 		if (p == NULL)
 			break;
-		q = ft_find_form_convert(p + 1);
+		q = ft_find_form_convertor(p + 1);
 		if (q == NULL)
 			break;
-		conv_spec = (char *)malloc(q - p + 1);
-		ft_strncpy(conv_spec, p, q - p);
+		//conv_spec = (char *)malloc(q - p + 1);
+		ft_strcpy(p, q + 1);
 	}
 	va_end(ap);
-	return (1);
+	return (printed_ch);
 }
