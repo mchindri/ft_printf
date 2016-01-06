@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_find_convertor.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/06 12:04:37 by mchindri         ###   ########.fr       */
+/*   Created: 2016/01/06 12:09:33 by mchindri          #+#    #+#             */
+/*   Updated: 2016/01/06 12:12:48 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int main()
+char *ft_find_convertor(char *s)
 {
-	//printf("%:d",12,100);
-	printf("salutare\n%2$*1$.*3$f\nsalutar%d",2, 1231.421,3, 4);
-	return (0);
+	char	*q;
+
+	while (*s)
+	{
+		q = CONVERTOR;
+		while (*s)
+			if (*q == *s)
+				return (s);
+			else
+				q++;
+		s++;
+	}
+	return (NULL);
+
 }

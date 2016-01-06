@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/06 12:04:37 by mchindri         ###   ########.fr       */
+/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
+/*   Updated: 2016/01/06 12:13:06 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int main()
+int	*ft_is_positional_arg(char *str)
 {
-	//printf("%:d",12,100);
-	printf("salutare\n%2$*1$.*3$f\nsalutar%d",2, 1231.421,3, 4);
-	return (0);
+	char *p;
+
+	p = ft_find_convertor(str);
+
 }
