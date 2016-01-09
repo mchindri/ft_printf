@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 13:21:13 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/05 13:35:02 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdlib.h>
 
-int	ft_is_positional_arg(char *str)
+void	*ft_memalloc(size_t size)
 {
-	while (*str)
+	unsigned char	*p;
+	size_t			i;
+
+	p = (unsigned char*)malloc(size);
+	if (!p)
+		return (NULL);
+	i = 0;
+	while (i < size)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		p[i] = 0;
+		i++;
 	}
-	return (0);	
+	return ((void *)p);
 }

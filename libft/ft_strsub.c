@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 15:31:51 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/22 12:58:20 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdlib.h>
 
-int	ft_is_positional_arg(char *str)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	while (*str)
+	size_t	i;
+	char	*p;
+
+	p = (char *)malloc(len);
+	if (!p || !s)
+		return (NULL);
+	i = 0;
+	while (i < len)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		p[i] = s[start + i];
+		i++;
 	}
-	return (0);	
+	return (p);
 }

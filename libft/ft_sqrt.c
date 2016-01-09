@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/22 14:21:55 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/22 15:24:45 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_is_positional_arg(char *str)
+unsigned	ft_sqrt(unsigned n)
 {
-	while (*str)
-	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
-	}
-	return (0);	
+	unsigned i;
+
+	i = 0;
+	while ((i + 1) * (i + 1) <= n)
+		i++;
+	return (i);
 }

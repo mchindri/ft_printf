@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/15 18:52:41 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/15 21:01:57 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_is_positional_arg(char *str)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	while (*str)
+	t_list *aux;
+	t_list *aux2;
+	t_list *map;
+
+	if (lst->next != NULL)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		aux2 = ft_lstmap(lst->next, f);
+		if (!aux2)
+			return (NULL);
 	}
-	return (0);	
+	aux = f(lst);
+	map = ft_lstnew(aux->content, aux->content_size);
+	if (!map)
+		return (NULL);
+	if (lst->next != NULL)
+		map->next = aux2;
+	else
+		map->next = NULL;
+	return (map);
 }

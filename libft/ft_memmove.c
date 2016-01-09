@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 19:42:22 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/21 19:44:37 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_is_positional_arg(char *str)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	while (*str)
+	size_t			i;
+	unsigned char	*aux;
+
+	aux = (unsigned char*)malloc(len);
+	i = 0;
+	while (i < len)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		aux[i] = *(unsigned char*)(src + i);
+		i++;
 	}
-	return (0);	
+	i = 0;
+	while (i < len)
+	{
+		*(unsigned char*)(dst + i) = aux[i];
+		i++;
+	}
+	free(aux);
+	return (dst);
 }

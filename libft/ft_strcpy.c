@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 19:57:39 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/21 19:59:55 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_is_positional_arg(char *str)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	while (*str)
+	char	*p;
+	char	*q;
+
+	p = (char *)dst;
+	q = (char *)src;
+	while (*q != '\0')
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		*p = *q;
+		p++;
+		q++;
 	}
-	return (0);	
+	*p = '\0';
+	return (dst);
 }

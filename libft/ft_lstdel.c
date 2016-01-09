@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/15 18:21:04 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/15 21:02:11 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <string.h>
+#include "libft.h"
 
-int	ft_is_positional_arg(char *str)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	while (*str)
-	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
-	}
-	return (0);	
+	if ((*alst)->next != NULL)
+		ft_lstdel(&((*alst)->next), del);
+	ft_lstdelone(alst, del);
 }

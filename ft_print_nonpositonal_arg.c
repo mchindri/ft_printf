@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_print_nonpositonal_arg.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2016/01/09 16:03:36 by mchindri          #+#    #+#             */
+/*   Updated: 2016/01/09 16:56:39 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_is_positional_arg(char *str)
+int	ft_print_nonpositional_arg(char *str, t_type_format spec, va_list *ap)
 {
-	while (*str)
+	int nb;
+
+	if (spec.len_mod[0] == '\0')
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		if (ft_strch(spec.conv, INTEGER))
+			ft_print_number(spec, *ap);
+		else if (ft_strch(spec.conv, STR))
+			ft_print_str
 	}
-	return (0);	
+	else if (spec.len_mod[1] == '\0')
+	{
+	}
+	else
+	{
+	}
 }

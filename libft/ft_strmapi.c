@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 15:00:39 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/22 12:50:44 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int	ft_is_positional_arg(char *str)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	while (*str)
+	char			*p;
+	unsigned int	i;
+
+	if (s && f)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		p = (char *)malloc(ft_strlen(s));
+		i = 0;
+		while (s[i])
+		{
+			p[i] = f(i, s[i]);
+			i++;
+		}
+		p[i] = '\0';
+		return (p);
 	}
-	return (0);	
+	return (NULL);
 }

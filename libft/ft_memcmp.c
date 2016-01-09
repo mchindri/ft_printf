@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 19:47:55 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/21 19:50:32 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_is_positional_arg(char *str)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	while (*str)
+	size_t			i;
+	unsigned char	*p;
+	unsigned char	*q;
+
+	i = 0;
+	p = (unsigned char *)s1;
+	q = (unsigned char *)s2;
+	while (i < n)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		if (p[i] != q[i])
+			return (p[i] - q[i]);
+		i++;
 	}
-	return (0);	
+	return (0);
 }

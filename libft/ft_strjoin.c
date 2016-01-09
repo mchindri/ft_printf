@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 15:53:46 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/22 12:59:15 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdlib.h>
 
-int	ft_is_positional_arg(char *str)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	while (*str)
-	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
-	}
-	return (0);	
+	char *p;
+
+	if (s1 && s2)
+		p = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	else
+		return (NULL);
+	if (p == NULL)
+		return (p);
+	ft_strcpy(p, s1);
+	ft_strcat(p, s2);
+	return (p);
 }

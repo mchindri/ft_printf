@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 15:25:32 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/22 12:55:40 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <stdlib.h>
 
-int	ft_is_positional_arg(char *str)
+int	ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	while (*str)
+	size_t i;
+
+	if (s1 && s2)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		i = 0;
+		while (i < n && s1[i] != 0 && s2[i] != 0)
+		{
+			if (s1[i] != s2[i])
+				return (0);
+			i++;
+		}
+		return (1);
 	}
-	return (0);	
+	return (0);
 }

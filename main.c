@@ -6,16 +6,17 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/06 12:04:37 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/09 17:12:41 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+//#include "ft_printf.h"
 #include <stdio.h>
 
 int main()
 {
 	//printf("%:d",12,100);
-	printf("salutare\n%2$*1$.*3$f\nsalutar%d",2, 1231.421,3, 4);
+	printf("salut %324%");
+	//ft_printf("%32.234d");
 	return (0);
 }

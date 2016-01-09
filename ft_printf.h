@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 09:50:01 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/06 12:13:10 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/09 17:12:38 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "libft.h"
 
 # define CONVERTOR "sSpdDioOuUxXcC%"
+# define INTEGER "pdDioOuUxX"
 
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strdup(const char *s1);
@@ -48,7 +50,8 @@ typedef struct	s_type_format
 	}		thousand_gruped;
 	int		min_weidth;
 	int		precision;
-	char	length_modifier;
+	char	len_mod[2];
+	char	conv;
 }				t_type_format;
 
 int	ft_printf(const char *format, ...);

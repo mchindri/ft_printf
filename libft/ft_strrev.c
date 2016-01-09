@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/22 14:12:18 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/22 14:50:21 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	ft_is_positional_arg(char *str)
+static int	ft_strlen(char *s)
 {
-	while (*str)
+	int i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char		*ft_strrev(char *s)
+{
+	int		i;
+	int		j;
+	char	aux;
+
+	j = ft_strlen(s) - 1;
+	i = 0;
+	while (i < j)
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		aux = s[j];
+		s[j] = s[i];
+		s[i] = aux;
+		i++;
+		j--;
 	}
-	return (0);	
+	return (s);
 }

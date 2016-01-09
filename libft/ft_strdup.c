@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_positional_arg.c                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/06 12:05:03 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 15:59:54 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 19:52:40 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/22 15:23:50 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_is_positional_arg(char *str)
+char	*ft_strdup(const char *s1)
 {
-	while (*str)
+	char *copy;
+	char *p;
+	char *q;
+
+	copy = (char *)malloc(ft_strlen(s1) + 1);
+	p = (char *)s1;
+	q = copy;
+	while (*p != '\0')
 	{
-		if (*str == '$')
-			return (1);
-		if (*str == '*')
-			return (0);
-		str++;
+		*q = *p;
+		q++;
+		p++;
 	}
-	return (0);	
+	*q = '\0';
+	return (copy);
 }
