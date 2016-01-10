@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 09:50:01 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 17:12:38 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/10 16:39:19 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,41 @@
 # define CONVERTOR "sSpdDioOuUxXcC%"
 # define INTEGER "pdDioOuUxX"
 
-char	*ft_strcpy(char *dst, const char *src);
-char	*ft_strdup(const char *s1);
-
-char	*ft_find_convertor(char *str);
+typedef enum	e_exist
+{
+	NO,
+	YES
+}				t_exist;
 
 typedef struct	s_type_format
 {
 	enum
 	{
-		LEFT_PAD,
-		RIGHT_PAD
+		RIGHT,
+		LEFT
 	}		pad_side;
 	enum
 	{
-		BLANK_PAD,
-		ZERO_PAD
+		BLANK,
+		ZERO
 	}		pad_type;
 	enum
 	{
 		UNSIGNED,
 		SIGNED
 	}		sign;
-	enum
-	{
-		YES,
-		NO
-	}		thousand_gruped;
+	t_exist	thousand_grouped;
+	t_exist space;
+	int		nb_arg;
 	int		min_weidth;
 	int		precision;
 	char	len_mod[2];
 	char	conv;
 }				t_type_format;
 
-int	ft_printf(const char *format, ...);
+int				ft_printf(const char *format, ...);
+char			*ft_find_convertor(char *str);
+t_type_format	ft_set_format(char *str, va_list *ap);
+int				ft_select_arg(va_list ap, int poz);
 
 #endif

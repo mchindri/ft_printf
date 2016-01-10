@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_select_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/10 16:39:21 by mchindri         ###   ########.fr       */
+/*   Created: 2016/01/10 16:20:44 by mchindri          #+#    #+#             */
+/*   Updated: 2016/01/10 16:35:35 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int main()
+int		ft_select_arg(va_list ap, int poz)
 {
-	char str[100] = "%02$4d";
-	printf("printf:\n");
-	printf("% * *.d",3,4,6);
-	printf("\nft_printf\n");
-	ft_printf("%02*2$d",3,2);
-	return (0);
+	static t_list	*lst = NULL;
+	t_list			*aux;
+	int				arg;
+	int				i;
+
+	i = 0;
+	while (lst)
+	{
+		if (i == poz)
+			return (*(int *)(lst->content));
+		lst = lst->next;
+		i++;
+	}
+	while (i < poz)
+	{
+		arg = va_arg(ap, int);
+		aux = ft_lstnew(&arg, sizeof(int));
+		ft_lstadd(&lst, aux);
+		i++;
+	}
+	return (arg);
 }

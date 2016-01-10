@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 11:44:29 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/09 17:12:37 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/10 16:24:44 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ static char	*ft_copy_convertor(char *p, char **copy)
 	aux = p;
 	while (!ft_is_convertor(*aux))
 		aux++;
-	*copy  = (char *)malloc(sizeof(char) * (aux - p + 1));
+	*copy  = (char *)malloc(sizeof(char) * (aux - p + 2));
 	(*copy)[aux - p] = '\0';
 	i = 0;
-	while (p < aux)
+	while (p <= aux)
 	{
 		(*copy)[i] = *p;
 		p++;
@@ -74,14 +74,12 @@ int			ft_printf(const char *format, ...)
 	while (p)
 	{
 		p = ft_copy_convertor(p, &str);
-		print_format = ft_set_format(str, *p, ap);
-	//	if (ft_is_positional_arg(str))
-	//		printed_ch += ft_print_positional_arg(str, print_format, ap[1]);
-	//	else
-	//		printed_ch += ft_print_nonpositional_arg(str, print_format, ap[0]);
-		p++;
+		print_format = ft_set_format(str, ap);
+		//printed_ch += ft_print_arg(print_format, ap[1]);
+		
 		p = ft_write_to_procent(p, &printed_ch);
 	}
-	va_end(ap);
+	va_end(ap[1]);
+	va_end(ap[0]);
 	return (printed_ch);
 }
