@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 09:50:01 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/10 16:39:19 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/11 15:54:04 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "libft.h"
+
+#include   "debug.h"
 
 # define CONVERTOR "sSpdDioOuUxXcC%"
 # define INTEGER "pdDioOuUxX"
@@ -52,6 +54,10 @@ typedef struct	s_type_format
 	char	len_mod[2];
 	char	conv;
 }				t_type_format;
+
+
+void	AFIS_FORM(t_type_format print_format);
+
 
 int				ft_printf(const char *format, ...);
 char			*ft_find_convertor(char *str);

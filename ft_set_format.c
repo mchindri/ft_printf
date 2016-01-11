@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:04 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/10 16:39:17 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/11 17:58:38 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int	ft_is_positional_arg(char *str)
 {
+	//se pot gasi si $ si in alte locuri in afara de la inceput
 	while (*str)
 	{
 		if (*str == '$')
@@ -84,6 +85,7 @@ void			ft_set_weidth(char *str, t_type_format *form, va_list *ap)
 	}
 	i = 0;
 	while (str[i] && str[i] != '.')
+	{
 		if (ft_isdigit(str[i]))
 		{
 			form->min_weidth = ft_atoi(str + i);
@@ -92,6 +94,8 @@ void			ft_set_weidth(char *str, t_type_format *form, va_list *ap)
 		}
 		else if (str[i] == '*')
 			i += ft_find_weidth_in_ap(str + i + 1, &(form->min_weidth), ap);
+		i++;
+	}
 }
 
 t_type_format	ft_set_format(char *str,  va_list *ap)
@@ -103,6 +107,6 @@ t_type_format	ft_set_format(char *str,  va_list *ap)
 		form.nb_arg = ft_atoi(str);
 	ft_set_flags(str, &form);
 	ft_set_weidth(str, &form, ap);
-	ft_set_precision(str, &form, ap);
+	//ft_set_precision(str, &form, ap);
 	return (form);
 }
