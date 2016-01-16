@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 16:20:44 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/10 16:35:35 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/16 13:42:32 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ int		ft_select_arg(va_list ap, int poz)
 	int				i;
 
 	i = 0;
-	while (lst)
+	aux = lst;
+	while (aux)
 	{
-		if (i == poz)
-			return (*(int *)(lst->content));
-		lst = lst->next;
+		if (i == poz - 1)
+			return (*(int *)(aux->content));
+		aux = aux->next;
 		i++;
 	}
 	while (i < poz)
@@ -32,7 +33,7 @@ int		ft_select_arg(va_list ap, int poz)
 		arg = va_arg(ap, int);
 		aux = ft_lstnew(&arg, sizeof(int));
 		ft_lstadd(&lst, aux);
-		i++;
+		i++;	
 	}
 	return (arg);
 }

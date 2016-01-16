@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 15:32:21 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/11 17:58:45 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/16 15:24:14 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,20 @@ void	AFIS_FORM(t_type_format p)
 	else
 		STR("NO")
 
+	STR("\nAlternate: ")
+	if (p.alternate == YES)
+		STR("Yes")
+	else
+		STR("NO")
+	
 	STR("\nNb_arg: ");
 	ft_putnbr(p.nb_arg);
 
 	STR("\nMin_weidth: ");
 	ft_putnbr(p.min_weidth);
+
+	STR("\nPrecision: ");
+	ft_putnbr(p.precision);
 
 	STR("\nLen_mod: ");
 	ft_putchar(p.len_mod[0]);

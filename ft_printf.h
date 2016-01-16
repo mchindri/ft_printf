@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 09:50:01 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/11 15:54:04 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/16 15:41:16 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_type_format
 	}		sign;
 	t_exist	thousand_grouped;
 	t_exist space;
+	t_exist alternate;
 	int		nb_arg;
 	int		min_weidth;
 	int		precision;
@@ -63,5 +64,12 @@ int				ft_printf(const char *format, ...);
 char			*ft_find_convertor(char *str);
 t_type_format	ft_set_format(char *str, va_list *ap);
 int				ft_select_arg(va_list ap, int poz);
+
+int	ft_print_arg(t_type_format format, va_list *ap);
+
+int	ft_print_number(t_type_format form, va_list *ap);
+int	ft_print_string(t_type_format form, va_list *ap);
+int	ft_print_char(t_type_format form, va_list *ap);
+int	ft_print_fractional(t_type_format form, va_list *ap);
 
 #endif
