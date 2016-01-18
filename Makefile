@@ -6,7 +6,7 @@
 #    By: mchindri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/12/30 10:22:09 by mchindri          #+#    #+#              #
-#    Updated: 2016/01/16 15:58:57 by mchindri         ###   ########.fr        #
+#    Updated: 2016/01/18 13:22:13 by mchindri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRC = ft_printf.c ft_set_format.c ft_select_arg.c ft_print_arg.c\
 		print_functions/ft_print_string.c \
 		print_functions/ft_print_char.c \
 		print_functions/ft_print_fractional.c \
+		ft_itoa_base.c \
 	  aux.c
 
 OFILES = ft_printf.o ft_set_format.o ft_select_arg.o ft_print_arg.o\
@@ -24,6 +25,7 @@ OFILES = ft_printf.o ft_set_format.o ft_select_arg.o ft_print_arg.o\
 		ft_print_string.o \
 		ft_print_char.o \
 		ft_print_fractional.o \
+		ft_itoa_base.o\
 		 aux.o
 
 DEBUG = -I debug
@@ -32,7 +34,7 @@ all: $(NAME)
 
 $(NAME):
 	@make -C libft/
-	@gcc -c -I libft $(SRC) $(DEBUG) -I .
+	@gcc -c -I libft $(SRC) $(DEBUG) -I . 
 	@ar rc $(NAME) $(OFILES)
 	@ranlib $(NAME)
 

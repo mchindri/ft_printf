@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:04 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/16 15:50:29 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/18 16:41:02 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	ft_set_precision(char *str, t_type_format *form, va_list *ap)
 	int n;
 	int i;
 
+	n = 0;
 	i = 0;
 	while (str[i])
 	{
@@ -158,6 +159,12 @@ t_type_format	ft_set_format(char *str,  va_list *ap)
 	ft_set_weidth(str, &form, ap);
 	ft_set_precision(str, &form, ap);
 	ft_set_lenmod(str, &form);
+	if (ft_strchr("DOU", form.conv))
+	{
+		form.conv += 32;
+		form.len_mod[0] = 'l';
+		form.len_mod[1] = 0;
+	}
 /*	if (form.conv == 'p')
 	{
 		form.len_mod[0] = 'l';
