@@ -6,7 +6,7 @@
 #    By: mchindri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/25 09:45:00 by mchindri          #+#    #+#              #
-#    Updated: 2015/12/30 10:30:38 by mchindri         ###   ########.fr        #
+#    Updated: 2016/01/18 18:11:31 by mchindri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,5 +166,6 @@ run: re runlib
 runlib:
 	@gcc $(MAIN) $(NAME)
 	./a.out
-
+compile:
+	@gcc -c $(FLAG) $(SOURCE)
 	

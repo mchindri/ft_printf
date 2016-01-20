@@ -6,14 +6,14 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/18 17:38:13 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/20 16:12:32 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-#define FORMAT "%-#10.5x", 342 
+#define FORMAT "%10.5x", 34223 
 
 int main()
 {

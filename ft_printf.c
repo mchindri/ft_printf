@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 11:44:29 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/18 16:38:24 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/18 17:51:12 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_is_convertor(char ch)
 	return (0);
 }
 
-static char	*ft_copy_convertor(char *p, char **copy)
+char	*ft_copy_convertor(char *p, char **copy)
 {
 	char	*aux;
 	int		i;
@@ -42,6 +42,7 @@ static char	*ft_copy_convertor(char *p, char **copy)
 		p++;
 		i++;
 	}
+	(*copy)[i] = '\0';
 	return (p);
 }
 

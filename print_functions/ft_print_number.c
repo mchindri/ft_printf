@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:26:25 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/18 17:38:10 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/18 17:51:50 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ char	*ft_format_number(char *nbr, t_type_format form, int sign)
 		i--;
 	if (form.pad_side == LEFT && i >= 0)
 	{
-		STR(formated_nbr)
 		ft_strcpy(formated_nbr, formated_nbr + i + 1);
 		ft_memset(formated_nbr + ft_strlen(formated_nbr), ' ', i + 1);
 	}
@@ -168,7 +167,7 @@ int		ft_print_number(t_type_format form, va_list *ap)
 	}
 	else
 		str =ft_itoa_base(n, 16);
-//	str = ft_format_number(str, form ,sign);
+	str = ft_format_number(str, form ,sign);
 	if (str == NULL)
 		return (-1);
 	ft_putstr(str);
