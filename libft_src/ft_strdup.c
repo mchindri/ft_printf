@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/21 19:52:40 by mchindri          #+#    #+#             */
-/*   Updated: 2015/12/22 15:23:50 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/28 15:55:51 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s1)
 	char *p;
 	char *q;
 
+	if (s1 == NULL)
+		return (NULL);
 	copy = (char *)malloc(ft_strlen(s1) + 1);
 	p = (char *)s1;
 	q = copy;

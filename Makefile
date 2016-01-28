@@ -6,7 +6,7 @@
 #    By: mchindri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/25 09:45:00 by mchindri          #+#    #+#              #
-#    Updated: 2016/01/28 13:07:11 by mchindri         ###   ########.fr        #
+#    Updated: 2016/01/28 15:39:27 by mchindri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,8 @@ LIBFT_SRC = ./libft_src/ft_putstr.c \
 			./libft_src/ft_lstadd.c\
 			./libft_src/ft_atoi.c\
 			./libft_src/ft_strlcat.c\
-			./libft_src/ft_putwchar.c
+			./libft_src/ft_putwchar.c\
+			./libft_src/ft_putwstr.c
 
 # :r! find ./printf_src -name \*.c -print
 
@@ -122,12 +123,13 @@ OFILES = aux.o			ft_memmove.o		ft_strdup.o \
 		  ft_memchr.o		ft_strclr.o		ft_tolower.o\
 		  ft_memcmp.o		ft_strcmp.o		ft_toupper.o\
 		  ft_memcpy.o		ft_strcpy.o		ft_putwchar.o\
-		  ft_memdel.o		ft_strdel.o		ft_format_number.o
+		  ft_memdel.o		ft_strdel.o		ft_format_number.o\
+		  ft_putwstr.o
 
 ###
-FLAG =
+FLAGS =
 ###
-FLAGS = -Wall -Wextra -Werror
+FLAG = -Wall -Wextra -Werror
 ###
 
 MAIN = main.c

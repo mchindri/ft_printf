@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/25 09:46:16 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:02 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/28 14:51:16 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char			*ft_itoa(int n);
 void			ft_putchar(char c);
 void			ft_putwchar(wchar_t wc);
 void			ft_putstr(char const *s);
+void			ft_putwstr(wchar_t const *s);
 void			ft_putendl(char const *s);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);

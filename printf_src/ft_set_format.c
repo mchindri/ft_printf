@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:04 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 12:05:40 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/01/28 16:01:25 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,18 +172,24 @@ t_type_format	ft_set_format(char *str,  va_list *ap)
 		form.len_mod[0] = 'l';
 		form.len_mod[1] = 0;
 	}
-	if (form.conv == 'C')
+	else if (form.conv == 'C')
 	{
 		form.conv = 'c';
 		ft_strcpy(form.len_mod, "l");
 	}
-	if (form.conv == 'p')
+	else if (form.conv == 'p')
 	{
 		form.pointer = YES;
 		form.len_mod[0] = 'l';
 		form.len_mod[1] = 0;
 		form.alternate = YES;
 		form.conv = 'x';
+	}
+	else if (form.conv == 'S')
+	{
+		form.len_mod[0] = 'l';
+		form.len_mod[1] = 0;
+		form.conv = 's';
 	}
 	return (form);
 }
