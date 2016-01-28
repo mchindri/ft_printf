@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:00 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 20:06:23 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/21 20:13:39 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "libft.h"
 
-#define FORMAT "%c", 200 
-
-int main()
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
-	return (0);
+	size_t i;
+	size_t begin;
+
+	begin = ft_strlen(s1);
+	i = 0;
+	while (i < ft_strlen(s2) && n > 0)
+	{
+		s1[begin + i] = s2[i];
+		i++;
+		n--;
+	}
+	s1[begin + i] = '\0';
+	return (s1);
 }

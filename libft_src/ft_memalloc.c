@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:00 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 13:21:13 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/05 13:35:02 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include <stdlib.h>
 
-#define FORMAT "%c", 200 
-
-int main()
+void	*ft_memalloc(size_t size)
 {
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
-	return (0);
+	unsigned char	*p;
+	size_t			i;
+
+	p = (unsigned char*)malloc(size);
+	if (!p)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		p[i] = 0;
+		i++;
+	}
+	return ((void *)p);
 }

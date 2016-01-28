@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_select_arg.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:00 by mchindri         ###   ########.fr       */
+/*   Created: 2016/01/10 16:20:44 by mchindri          #+#    #+#             */
+/*   Updated: 2016/01/16 13:42:32 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
 
-#define FORMAT "%c", 200 
-
-int main()
+int		ft_select_arg(va_list ap, int poz)
 {
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
-	return (0);
+	static t_list	*lst = NULL;
+	t_list			*aux;
+	int				arg;
+	int				i;
+
+	i = 0;
+	aux = lst;
+	while (aux)
+	{
+		if (i == poz - 1)
+			return (*(int *)(aux->content));
+		aux = aux->next;
+		i++;
+	}
+	while (i < poz)
+	{
+		arg = va_arg(ap, int);
+		aux = ft_lstnew(&arg, sizeof(int));
+		ft_lstadd(&lst, aux);
+		i++;	
+	}
+	return (arg);
 }

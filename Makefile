@@ -5,113 +5,157 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mchindri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/12/30 10:22:09 by mchindri          #+#    #+#              #
-#    Updated: 2016/01/20 16:12:13 by mchindri         ###   ########.fr        #
+#    Created: 2015/10/25 09:45:00 by mchindri          #+#    #+#              #
+#    Updated: 2016/01/28 13:07:11 by mchindri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+# :r! ls libft_src/*.c
+
+LIBFT_SRC = ./libft_src/ft_putstr.c \
+			./libft_src/ft_strnew.c\
+			./libft_src/ft_isprint.c\
+			./libft_src/ft_tolower.c\
+			./libft_src/ft_memdel.c\
+			./libft_src/ft_strnequ.c\
+			./libft_src/ft_striter.c\
+			./libft_src/ft_memmove.c\
+			./libft_src/ft_putchar.c\
+			./libft_src/ft_strmap.c\
+			./libft_src/ft_isdigit.c\
+			./libft_src/ft_memccpy.c\
+			./libft_src/ft_strdel.c\
+			./libft_src/ft_lstnew.c\
+			./libft_src/ft_strstr.c\
+			./libft_src/ft_strtrim.c\
+			./libft_src/ft_memcpy.c\
+			./libft_src/ft_strnstr.c\
+			./libft_src/ft_lstdel.c\
+			./libft_src/ft_strsplit.c\
+			./libft_src/ft_isalnum.c\
+			./libft_src/ft_isalpha.c\
+			./libft_src/ft_putchar_fd.c\
+			./libft_src/ft_strclr.c\
+			./libft_src/ft_strcmp.c\
+			./libft_src/ft_strncmp.c\
+			./libft_src/ft_strdup.c\
+			./libft_src/ft_strrev.c\
+			./libft_src/ft_striteri.c\
+			./libft_src/ft_strmapi.c\
+			./libft_src/ft_itoa.c\
+			./libft_src/ft_strcpy.c\
+			./libft_src/ft_toupper.c\
+			./libft_src/ft_putendl_fd.c\
+			./libft_src/ft_memcmp.c\
+			./libft_src/ft_powi.c\
+			./libft_src/ft_lstiter.c\
+			./libft_src/ft_strncpy.c\
+			./libft_src/ft_putnbr_fd.c\
+			./libft_src/ft_strlen.c\
+			./libft_src/ft_strncat.c\
+			./libft_src/ft_strjoin.c\
+			./libft_src/ft_memchr.c\
+			./libft_src/ft_strsub.c\
+			./libft_src/ft_memset.c\
+			./libft_src/ft_absd.c\
+			./libft_src/ft_isascii.c\
+			./libft_src/ft_putstr_fd.c\
+			./libft_src/ft_strchr.c\
+			./libft_src/ft_bzero.c\
+			./libft_src/ft_sqrt.c\
+			./libft_src/ft_strequ.c\
+			./libft_src/ft_lstmap.c\
+			./libft_src/ft_lstdelone.c\
+			./libft_src/ft_strcat.c\
+			./libft_src/ft_putnbr.c\
+			./libft_src/ft_absi.c\
+			./libft_src/ft_strrchr.c\
+			./libft_src/ft_putendl.c\
+			./libft_src/ft_memalloc.c\
+			./libft_src/ft_swap.c\
+			./libft_src/ft_lstadd.c\
+			./libft_src/ft_atoi.c\
+			./libft_src/ft_strlcat.c\
+			./libft_src/ft_putwchar.c
+
+# :r! find ./printf_src -name \*.c -print
+
+PRINTF_SRC = ./printf_src/ft_printf.c \
+			 ./printf_src/ft_find_convertor.c\
+			 ./printf_src/ft_is_positional_arg.c\
+			 ./printf_src/ft_set_format.c\
+			 ./printf_src/ft_print_arg.c\
+			 ./printf_src/aux.c\
+			 ./printf_src/print_functions/ft_print_number.c\
+			 ./printf_src/print_functions/ft_print_fractional.c\
+			 ./printf_src/print_functions/ft_print_char.c\
+			 ./printf_src/print_functions/ft_format_number.c\
+			 ./printf_src/print_functions/ft_print_string.c\
+			 ./printf_src/ft_select_arg.c\
+			 ./printf_src/ft_itoa_base.c
+
+# make ofiles
+# :r! cat | ls -C *.o
+
+OFILES = aux.o			ft_memmove.o		ft_strdup.o \
+		  ft_absd.o		ft_memset.o		ft_strequ.o\
+		  ft_absi.o		ft_powi.o		ft_striter.o\
+		  ft_atoi.o		ft_print_arg.o		ft_striteri.o\
+		  ft_bzero.o		ft_print_char.o		ft_strjoin.o\
+		  ft_find_convertor.o	ft_print_fractional.o	ft_strlcat.o\
+		  ft_is_positional_arg.o	ft_print_number.o	ft_strlen.o\
+		  ft_isalnum.o		ft_print_string.o	ft_strmap.o\
+		  ft_isalpha.o		ft_printf.o		ft_strmapi.o\
+		  ft_isascii.o		ft_putchar.o		ft_strncat.o\
+		  ft_isdigit.o		ft_putchar_fd.o		ft_strncmp.o\
+		  ft_isprint.o		ft_putendl.o		ft_strncpy.o\
+		  ft_itoa.o		ft_putendl_fd.o		ft_strnequ.o\
+		  ft_itoa_base.o		ft_putnbr.o		ft_strnew.o\
+		  ft_lstadd.o		ft_putnbr_fd.o		ft_strnstr.o\
+		  ft_lstdel.o		ft_putstr.o		ft_strrchr.o\
+		  ft_lstdelone.o		ft_putstr_fd.o		ft_strrev.o\
+		  ft_lstiter.o		ft_select_arg.o		ft_strsplit.o\
+		  ft_lstmap.o		ft_set_format.o		ft_strstr.o\
+		  ft_lstnew.o		ft_sqrt.o		ft_strsub.o\
+		  ft_memalloc.o		ft_strcat.o		ft_strtrim.o\
+		  ft_memccpy.o		ft_strchr.o		ft_swap.o\
+		  ft_memchr.o		ft_strclr.o		ft_tolower.o\
+		  ft_memcmp.o		ft_strcmp.o		ft_toupper.o\
+		  ft_memcpy.o		ft_strcpy.o		ft_putwchar.o\
+		  ft_memdel.o		ft_strdel.o		ft_format_number.o
+
+###
+FLAG =
+###
 FLAGS = -Wall -Wextra -Werror
-SRC = ft_printf.c ft_set_format.c ft_select_arg.c ft_print_arg.c\
-	  print_functions/ft_print_number.c \
-	  print_functions/ft_print_string.c \
-	  print_functions/ft_print_char.c \
-	  print_functions/ft_print_fractional.c \
-	  ft_itoa_base.c \
-	  aux.c
-FT_SRC = ft_atoi.c		\
-		ft_bzero.c		\
-		ft_isalnum.c	\
-		ft_isalpha.c	\
-		ft_isascii.c	\
-		ft_isdigit.c	\
-		ft_isprint.c	\
-		ft_itoa.c		\
-		ft_memalloc.c	\
-		ft_memccpy.c	\
-		ft_memchr.c	\
-		ft_memcmp.c	\
-		ft_memcpy.c	\
-		ft_memdel.c	\
-		ft_memmove.c	\
-		ft_memset.c	\
-		ft_putchar.c	\
-		ft_putchar_fd.c\
-		ft_putendl.c	\
-		ft_putendl_fd.c\
-		ft_putnbr.c	\
-		ft_putnbr_fd.c	\
-		ft_putstr.c	\
-		ft_putstr_fd.c	\
-		ft_strcat.c	\
-		ft_strchr.c	\
-		ft_strclr.c	\
-		ft_strcmp.c	\
-		ft_strcpy.c	\
-		ft_strdel.c	\
-		ft_strdup.c	\
-		ft_strequ.c	\
-		ft_striter.c	\
-		ft_striteri.c	\
-		ft_strjoin.c	\
-		ft_strlcat.c	\
-		ft_strlen.c	\
-		ft_strmap.c	\
-		ft_strmapi.c	\
-		ft_strncat.c	\
-		ft_strncmp.c	\
-		ft_strncpy.c	\
-		ft_strnequ.c	\
-		ft_strnew.c	\
-		ft_strnstr.c	\
-		ft_strrchr.c	\
-		ft_strsplit.c	\
-		ft_strstr.c	\
-		ft_strsub.c	\
-		ft_strtrim.c	\
-		ft_tolower.c	\
-		ft_toupper.c	\
-		ft_lstnew.c	\
-		ft_lstdelone.c	\
-		ft_lstdel.c	\
-		ft_lstadd.c	\
-		ft_lstiter.c	\
-		ft_lstmap.c	\
-		ft_absd.c		\
-		ft_absi.c		\
-		ft_powi.c		\
-		ft_strrev.c	\
-		ft_swap.c		\
-		ft_sqrt.c
+###
 
-
-OFILES = ft_printf.o ft_set_format.o ft_select_arg.o ft_print_arg.o\
-		 ft_print_number.o \
-		 ft_print_string.o \
-		 ft_print_char.o \
-		 ft_print_fractional.o \
-		 ft_itoa_base.o\
-		 aux.o
-
-DEBUG = -I debug
+MAIN = main.c
+NAME = libftprintf.a
+INCLUDES = -I includes -I debug
 
 all: $(NAME)
-
-$(NAME):
-	@make -C libft/
-	@gcc -c -I libft $(SRC) $(DEBUG) -I .
 	@ar rc $(NAME) $(OFILES)
 	@ranlib $(NAME)
 
-clean:
+$(NAME):	
+	@gcc -c $(FLAGS) $(INCLUDES) $(PRINTF_SRC) $(LIBFT_SRC)
+
+ofiles: $(NAME)
+
+clean: 
 	@rm -f $(OFILES)
 
 fclean: clean
-	@rm -f $(NAME) a.out
-	@make -C libft fclean
+	@rm -f $(NAME)
+	@rm -f a.out
 
 re: fclean all
 
 test: re
-	gcc main.c -L . -lftprintf -L ./libft -lft -I libft $(DEBUG)
+	@gcc $(INCLUDES) -L . -lftprintf $(MAIN)
 	./a.out
+
+test_e: re
+	@gcc $(INCLUDES) -L . -lftprintf $(MAIN)
+	./a.out | cat -e

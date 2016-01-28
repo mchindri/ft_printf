@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:00 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 19:47:55 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/21 19:50:32 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "libft.h"
 
-#define FORMAT "%c", 200 
-
-int main()
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
+	size_t			i;
+	unsigned char	*p;
+	unsigned char	*q;
+
+	i = 0;
+	p = (unsigned char *)s1;
+	q = (unsigned char *)s2;
+	while (i < n)
+	{
+		if (p[i] != q[i])
+			return (p[i] - q[i]);
+		i++;
+	}
 	return (0);
 }

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:00 by mchindri         ###   ########.fr       */
+/*   Created: 2015/12/21 19:38:35 by mchindri          #+#    #+#             */
+/*   Updated: 2015/12/21 19:42:11 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "libft.h"
 
-#define FORMAT "%c", 200 
-
-int main()
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
-	return (0);
+	size_t			i;
+	unsigned char	*p;
+	unsigned char	*q;
+
+	p = (unsigned char*)dst;
+	q = (unsigned char*)src;
+	i = 0;
+	while (i < n)
+	{
+		p[i] = q[i];
+		if (q[i] == (unsigned char)c)
+			return ((void*)(dst + i + 1));
+		i++;
+	}
+	return (NULL);
 }

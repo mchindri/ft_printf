@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:00 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 15:14:29 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/22 13:01:21 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
-
-#define FORMAT "%c", 200 
-
-int main()
+int	ft_strequ(char const *s1, char const *s2)
 {
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
-	return (0);
+	char *p;
+	char *q;
+
+	if (!s1 || !s2)
+		return (0);
+	p = (char *)s1;
+	q = (char *)s2;
+	while (*p || *q)
+		if (*p != *q)
+			return (0);
+		else
+		{
+			p++;
+			q++;
+		}
+	return (1);
 }

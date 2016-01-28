@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 13:44:00 by mchindri         ###   ########.fr       */
+/*   Created: 2015/11/05 15:53:46 by mchindri          #+#    #+#             */
+/*   Updated: 2015/11/22 12:59:15 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "libft.h"
+#include <stdlib.h>
 
-#define FORMAT "%c", 200 
-
-int main()
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
-	return (0);
+	char *p;
+
+	if (s1 && s2)
+		p = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	else
+		return (NULL);
+	if (p == NULL)
+		return (p);
+	ft_strcpy(p, s1);
+	ft_strcat(p, s2);
+	return (p);
 }
