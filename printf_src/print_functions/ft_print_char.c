@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:29:17 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 12:39:40 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 15:24:30 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_print_char(t_type_format form, va_list *ap)
 	int		nb;
 	char	c;
 
-	if (NULL == ft_strchr(CONVERTOR, form.conv))
+	if (NULL == ft_strchr(CONVERTOR, form.conv) || form.conv == '%')
 		ch = form.conv;
 	else
 	{

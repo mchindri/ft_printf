@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 12:09:33 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/06 12:12:48 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 16:55:06 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_find_convertor(char *s)
+char	*ft_find_convertor(char *s)
 {
 	char	*q;
 
@@ -27,5 +27,4 @@ char *ft_find_convertor(char *s)
 		s++;
 	}
 	return (NULL);
-
 }

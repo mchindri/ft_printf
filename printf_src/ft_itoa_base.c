@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/18 13:20:48 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/27 17:28:45 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 16:55:54 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void ft_create_str(char *str, int size, uintmax_t nb, int base)
+void	ft_create_str(char *str, int size, uintmax_t nb, int base)
 {
 	int aux;
 
@@ -31,7 +31,7 @@ void ft_create_str(char *str, int size, uintmax_t nb, int base)
 		}
 }
 
-char *ft_alloc_str(uintmax_t nb, int base)
+char	*ft_alloc_str(uintmax_t nb, int base)
 {
 	int			size;
 	uintmax_t	nb_cpy;
@@ -54,7 +54,7 @@ char *ft_alloc_str(uintmax_t nb, int base)
 	return (str);
 }
 
-char *ft_itoa_base(uintmax_t value, int base)
+char	*ft_itoa_base(uintmax_t value, int base)
 {
 	char		*str;
 

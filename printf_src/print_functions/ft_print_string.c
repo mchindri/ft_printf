@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:14:35 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 12:58:54 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 14:55:03 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,13 @@ int		ft_print_string(t_type_format form, va_list *ap)
 		str = ft_strdup((char *)va_arg(ap[0], char *));
 		if (str == 0)
 		{
-			ft_putstr("(null)");
-			return (6);
+			if (form.precision == 0)
+				str = ft_strdup("");
+			else
+			{
+				ft_putstr("(null)");
+				return (6);
+			}
 		}
 		nb = ft_strlen(str);
 		if (form.precision >= 0)
@@ -141,7 +146,7 @@ int		ft_print_string(t_type_format form, va_list *ap)
 	}
 	else
 	{
-	//	w_str = (wchar_t *)va_arg(ap[0], wchar_t *);
+		//	w_str = (wchar_t *)va_arg(ap[0], wchar_t *);
 		w_str = ft_strwdup((wchar_t *)va_arg(ap[0], wchar_t *));
 		if (w_str == 0 || 0 == ft_memcmp(w_str, L"(null)", sizeof(L"(null)")))
 		{

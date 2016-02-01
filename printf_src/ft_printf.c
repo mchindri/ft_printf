@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 11:44:29 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 13:56:55 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 17:08:22 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_is_convertor(char ch, char *conv)
+static int		ft_is_convertor(char ch, char *conv)
 {
 	while (*conv)
 		if (*conv == ch)
@@ -22,7 +22,7 @@ static int	ft_is_convertor(char ch, char *conv)
 	return (0);
 }
 
-char	*ft_copy_convertor(char *p, char **copy)
+char			*ft_copy_convertor(char *p, char **copy)
 {
 	char	*aux;
 	int		i;
@@ -31,13 +31,7 @@ char	*ft_copy_convertor(char *p, char **copy)
 	while (*aux && !ft_is_convertor(*aux, CONVERTOR) &&
 			ft_is_convertor(*aux, ALL))
 		aux++;
-	/*if (*aux == 0 && *p != 0)
-	{
-		aux = p + 1;
-		while (ft_is_convertor(*aux, ALL))
-				aux++;
-	}*/
-	*copy  = (char *)malloc(sizeof(char) * (aux - p + 2));
+	*copy = (char *)malloc(sizeof(char) * (aux - p + 2));
 	ft_bzero(*copy, sizeof(*copy));
 	i = 0;
 	while (p <= aux && *p)
@@ -50,8 +44,7 @@ char	*ft_copy_convertor(char *p, char **copy)
 	return (p);
 }
 
-
-static char	*ft_write_to_procent(char *str, int *printed_ch)
+static char		*ft_write_to_procent(char *str, int *printed_ch)
 {
 	while (*str != '%' && *str)
 	{
@@ -64,7 +57,7 @@ static char	*ft_write_to_procent(char *str, int *printed_ch)
 	return (NULL);
 }
 
-int			ft_printf(const char *format, ...)
+int				ft_printf(const char *format, ...)
 {
 	int				printed_ch;
 	va_list			ap[2];
@@ -79,9 +72,8 @@ int			ft_printf(const char *format, ...)
 	while (p)
 	{
 		p = ft_copy_convertor(p, &str);
-		
 		print_format = ft_set_format(str, ap);
-	//	AFIS_FORM(print_format);
+//		AFIS_FORM(print_format);
 		if (print_format.conv != 0)
 			printed_ch += ft_print_arg(print_format, ap);
 		p = ft_write_to_procent(p, &printed_ch);

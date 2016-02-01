@@ -6,16 +6,18 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:04 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 13:27:51 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 17:07:55 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
+ *	se pot gasi si $ si in alte locuri in afara de la inceput
+ */
 
-int	ft_is_positional_arg(char *str)
+int				ft_is_positional_arg(char *str)
 {
-	//se pot gasi si $ si in alte locuri in afara de la inceput
 	while (*str)
 	{
 		if (*str == '$')
@@ -27,7 +29,7 @@ int	ft_is_positional_arg(char *str)
 	return (0);
 }
 
-void	ft_set_flags(char *str, t_type_format *form)
+void			ft_set_flags(char *str, t_type_format *form)
 {
 	int i;
 
@@ -35,11 +37,12 @@ void	ft_set_flags(char *str, t_type_format *form)
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]) && str[i] != '0')
-			while (ft_isdigit(str[i++]));
+			while (ft_isdigit(str[i]))
+				i++;
 		if (str[i] == '0')
 			form->pad_type = ZERO;
 		if (ft_isdigit(str[i - 1]))
-			break;
+			break ;
 		i++;
 	}
 	i = 0;
@@ -56,7 +59,7 @@ void	ft_set_flags(char *str, t_type_format *form)
 		else if (str[i] == '\'')
 			form->thousand_grouped = YES;
 		i++;
-	}	
+	}
 }
 
 int				ft_select_param(char *str, int *i, va_list *ap)
@@ -99,13 +102,13 @@ void			ft_set_weidth(char *str, t_type_format *form, va_list *ap)
 				i++;
 			i--;
 		}
-		else if (str[i] == '*')	
+		else if (str[i] == '*')
 			form->min_weidth = ft_select_param(str, &i, ap);
 		i++;
 	}
 }
 
-void	ft_set_precision(char *str, t_type_format *form, va_list *ap)
+void			ft_set_precision(char *str, t_type_format *form, va_list *ap)
 {
 	int n;
 	int i;
@@ -122,11 +125,15 @@ void	ft_set_precision(char *str, t_type_format *form, va_list *ap)
 			if (ft_isdigit(str[i]))
 			{
 				n = ft_atoi(str + i);
-				while(ft_isdigit(str[i]))
+				while (ft_isdigit(str[i]))
 					i++;
 			}
 			else if (str[i] == '*')
+			{
 				n = ft_select_param(str, &i, ap);
+				if (n < 0)
+					n = -1;
+			}
 			else
 				n = 0;
 		}
@@ -134,7 +141,7 @@ void	ft_set_precision(char *str, t_type_format *form, va_list *ap)
 	form->precision = n;
 }
 
-void	ft_set_lenmod(char *str, t_type_format *form)
+void			ft_set_lenmod(char *str, t_type_format *form)
 {
 	char	*p;
 
@@ -150,12 +157,12 @@ void	ft_set_lenmod(char *str, t_type_format *form)
 		(form->len_mod)[1] = *p;
 }
 
-t_type_format	ft_set_format(char *str,  va_list *ap)
+t_type_format	ft_set_format(char *str, va_list *ap)
 {
 	t_type_format form;
 
 	ft_bzero(&form, sizeof(t_type_format));
-		if (*str == 0)
+	if (*str == 0)
 		return (form);
 	if (ft_is_positional_arg(str))
 		form.nb_arg = ft_atoi(str);

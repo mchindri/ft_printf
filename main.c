@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 14:08:59 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 16:46:26 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define FORMAT "{%+03d}", 0
+#define FORMAT "{%05.*d}", -15, 42
 
 int main()
 {

@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 15:53:50 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 14:09:01 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 16:54:03 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,45 @@ int ft_calc_size(char *nbr, t_type_format form, int sign)
 	//thousand_group
 	nb_size = size;
 	if (((form.sign == SIGNED || form.space == YES) && 
-		!ft_is_unsigned(form.conv)) || sign == 1)
+				!ft_is_unsigned(form.conv)) || sign == 1)
 		size++;
-	if (form.alternate == YES && (nbr[0] != '0' || form.pointer == YES))
+	if (form.alternate == YES && (nbr[0] != '0' || form.pointer == YES ||
+				(nbr[0] == '0' && form.precision == 0 && form.conv == 'o')))
 	{
 		if (form.conv == 'X' || form.conv == 'x' || form.pointer == YES)
 			size += 2;
 		else
+		{
 			size++;
+			nb_size++;
+		}
 	}
 	if (form.precision > nb_size)
 		size += form.precision - nb_size;
 	if (form.min_weidth > size)
 		size = form.min_weidth;
 	return (size);
+}
+
+int		ft_set_start(t_type_format form, char sign)
+{
+	int start;
+
+	start = 0;
+	if (form.pad_type == ZERO && form.pad_side == RIGHT)
+	{
+		if (form.alternate == YES)
+		{
+			if (form.conv == 'x')
+				start += 2;
+			else if (form.conv == 'X')
+				start++;
+		}
+		if (0 == ft_is_unsigned(form.conv))
+			if (form.sign == SIGNED || form.space == YES || sign == 1)
+				start++;
+	}
+	return (start);
 }
 
 char	*ft_format_number(char *nbr, t_type_format form, int sign)
@@ -51,9 +76,8 @@ char	*ft_format_number(char *nbr, t_type_format form, int sign)
 	int		size;
 	int		i;
 	int		j;
-//	int		signed_;
+	int		start;
 
-//	AFIS_FORM(form);
 	size = ft_calc_size(nbr, form, sign);
 	if (NULL == (formated_nbr = (char *)malloc(size + 1)))
 		return (NULL);
@@ -65,12 +89,42 @@ char	*ft_format_number(char *nbr, t_type_format form, int sign)
 		ft_strcpy(formated_nbr + i, "");
 	else
 		ft_strcpy(formated_nbr + i, nbr);
+	start = ft_set_start(form, sign);
+// de aici e nou
 	j = 0;
-	
-	/*if (form.sign == SIGNED || sign == 0)
-		signed_ = 1;
-	else
-		signed_ = 0;*/
+	if (form.conv == 'o' && form.alternate == YES)
+		nbr_len++;
+	while (nbr_len + j < form.precision)
+		formated_nbr[i - j++ - 1] = '0';
+	i -= j + 1;
+//	NB(form.precision)
+	if (form.precision == -1)
+		if (form.pad_side == RIGHT && form.pad_type == ZERO)
+			while (i >= start)
+				formated_nbr[i--] = '0';
+	if (form.alternate == YES)
+	{
+		if (form.conv == 'x')
+			formated_nbr[i--] = 'x';
+		else if (form.conv == 'X')
+			formated_nbr[i--] = 'X';
+		if (ft_strchr("xXo", form.conv))
+			formated_nbr[i--] = '0';
+	}
+	if (sign == 1)
+		formated_nbr[i--] = '-';
+	else if (form.sign == SIGNED && !ft_is_unsigned(form.conv))
+		formated_nbr[i--] = '+';
+	else if (form.space == YES)
+		i--;
+	if (form.pad_side == LEFT && i >= 0)
+	{
+		ft_strcpy(formated_nbr, formated_nbr + i + 1);
+		ft_memset(formated_nbr + ft_strlen(formated_nbr), ' ', i + 1);
+	}
+	free(nbr);
+	/*
+	j = 0;
 	while (nbr_len + j < form.precision ||
 			(form.precision < 0 && form.pad_type == ZERO &&
 			 form.pad_side == RIGHT && nbr_len + j + sign < form.min_weidth))
@@ -101,5 +155,6 @@ char	*ft_format_number(char *nbr, t_type_format form, int sign)
 		ft_memset(formated_nbr + ft_strlen(formated_nbr), ' ', i + 1);
 	}
 	free(nbr);
+*/
 	return (formated_nbr);
 }

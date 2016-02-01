@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 16:20:44 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/16 13:42:32 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 17:01:11 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		ft_select_arg(va_list ap, int poz)
 		arg = va_arg(ap, int);
 		aux = ft_lstnew(&arg, sizeof(int));
 		ft_lstadd(&lst, aux);
-		i++;	
+		i++;
 	}
 	return (arg);
 }
