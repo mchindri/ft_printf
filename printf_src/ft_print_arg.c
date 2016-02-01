@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 14:02:57 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 12:09:46 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 12:36:13 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int ft_is_string(t_type_format form)
 }
 int ft_is_char(t_type_format form)
 {
-	if (form.conv == 'c')
+	if (form.conv == 'c' || NULL == ft_strchr(CONVERTOR, form.conv))
 		return (1);
 	return (0);
 }

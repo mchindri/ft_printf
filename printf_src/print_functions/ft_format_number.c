@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 15:53:50 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/27 19:09:44 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 14:09:01 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ char	*ft_format_number(char *nbr, t_type_format form, int sign)
 	while (nbr_len + j < form.precision ||
 			(form.precision < 0 && form.pad_type == ZERO &&
 			 form.pad_side == RIGHT && nbr_len + j + sign < form.min_weidth))
-		formated_nbr[i - j++ - 1] = '0';
+		if (form.alternate == YES && form.pad_type == ZERO && i - j - 1 == 1)
+			break;
+		else
+			formated_nbr[i - j++ - 1] = '0';
 	i -= j + 1;
 	if (form.alternate == YES && (!(form.conv == 'o' &&
 					formated_nbr[i + 1] == '0') || form.pointer == YES))

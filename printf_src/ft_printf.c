@@ -6,17 +6,14 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 11:44:29 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 16:19:32 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 13:56:55 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_is_convertor(char ch)
+static int	ft_is_convertor(char ch, char *conv)
 {
-	char *conv;
-
-	conv = CONVERTOR;
 	while (*conv)
 		if (*conv == ch)
 			return (1);
@@ -31,12 +28,19 @@ char	*ft_copy_convertor(char *p, char **copy)
 	int		i;
 
 	aux = p;
-	while (!ft_is_convertor(*aux))
+	while (*aux && !ft_is_convertor(*aux, CONVERTOR) &&
+			ft_is_convertor(*aux, ALL))
 		aux++;
+	/*if (*aux == 0 && *p != 0)
+	{
+		aux = p + 1;
+		while (ft_is_convertor(*aux, ALL))
+				aux++;
+	}*/
 	*copy  = (char *)malloc(sizeof(char) * (aux - p + 2));
 	ft_bzero(*copy, sizeof(*copy));
 	i = 0;
-	while (p <= aux)
+	while (p <= aux && *p)
 	{
 		(*copy)[i] = *p;
 		p++;
@@ -75,12 +79,12 @@ int			ft_printf(const char *format, ...)
 	while (p)
 	{
 		p = ft_copy_convertor(p, &str);
+		
 		print_format = ft_set_format(str, ap);
-
 	//	AFIS_FORM(print_format);
-		printed_ch += ft_print_arg(print_format, ap);
+		if (print_format.conv != 0)
+			printed_ch += ft_print_arg(print_format, ap);
 		p = ft_write_to_procent(p, &printed_ch);
-		NB(printed_ch)
 	}
 	va_end(ap[1]);
 	va_end(ap[0]);

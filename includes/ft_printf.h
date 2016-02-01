@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 09:50:01 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 16:19:35 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 13:58:04 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 //
 # define CONVERTOR "sSpdDioOuUxXcC%"
 # define INTEGER "pdDioOuUxX"
+# define ALL "sSpdDioOuUxXcCnhljz'+ *$.-#0123456789"
 
 typedef enum	e_exist
 {

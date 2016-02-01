@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:04 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 16:01:25 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 13:27:51 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ t_type_format	ft_set_format(char *str,  va_list *ap)
 	t_type_format form;
 
 	ft_bzero(&form, sizeof(t_type_format));
+		if (*str == 0)
+		return (form);
 	if (ft_is_positional_arg(str))
 		form.nb_arg = ft_atoi(str);
 	ft_set_flags(str, &form);

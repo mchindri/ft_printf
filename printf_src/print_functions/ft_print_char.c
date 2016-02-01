@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:29:17 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 15:23:09 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 12:39:40 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,14 @@ int	ft_print_char(t_type_format form, va_list *ap)
 	int		nb;
 	char	c;
 
-	ch = (wint_t)va_arg(ap[0], wint_t);
-	if (form.len_mod[1] == 'h')
-		ch = (wint_t)(unsigned char)ch;//verificat
+	if (NULL == ft_strchr(CONVERTOR, form.conv))
+		ch = form.conv;
+	else
+	{
+		ch = (wint_t)va_arg(ap[0], wint_t);
+		if (form.len_mod[1] == 'h')
+			ch = (wint_t)(unsigned char)ch;//verificat
+	}
 	nb = ft_set_nb(ch, form);
 	if (form.pad_type == BLANK)
 		c = ' ';	

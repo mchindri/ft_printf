@@ -6,20 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:14:35 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 16:19:29 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/01 12:58:54 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_strwlen(wchar_t *str)
-{
-	size_t i;
 
-	i = 0;
-	while (str[i++]);
-	return (i);
-}
 
 int		ft_wchar_len(wchar_t wc)
 {
@@ -33,6 +26,21 @@ int		ft_wchar_len(wchar_t wc)
 		return (4);
 	return (0);
 
+}
+
+size_t	ft_strwlen(wchar_t *str)
+{
+	size_t i;
+	size_t nb;
+
+	nb = 0;
+	i = 0;
+	while (str[i])
+	{
+		nb += ft_wchar_len(str[i]);
+		i++;
+	}
+	return (nb);
 }
 
 int		ft_putwstr_(wchar_t *str)
@@ -71,6 +79,23 @@ wchar_t	*ft_strwdup(wchar_t *s1)
 	*q = '\0';
 	return (copy);
 }
+
+int		ft_cutstr(wchar_t *str, int len)
+{
+	int i;
+	int size;
+
+	i = 0;
+	size = 0;
+	while (size + ft_wchar_len(str[i]) <= len)
+	{
+		size += ft_wchar_len(str[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (size);
+}
+
 int		ft_print_string(t_type_format form, va_list *ap)
 {
 	wchar_t *w_str;
@@ -116,31 +141,33 @@ int		ft_print_string(t_type_format form, va_list *ap)
 	}
 	else
 	{
+	//	w_str = (wchar_t *)va_arg(ap[0], wchar_t *);
 		w_str = ft_strwdup((wchar_t *)va_arg(ap[0], wchar_t *));
-		if (w_str == NULL)
+		if (w_str == 0 || 0 == ft_memcmp(w_str, L"(null)", sizeof(L"(null)")))
 		{
 			ft_putstr("(null)");
 			return (6);
 		}
-		if (form.precision >= 0)
-			w_str[form.precision] = '\0';
 		nb = ft_strwlen(w_str);
+		if (form.precision <= nb && form.precision != -1)
+			nb = ft_cutstr(w_str, form.precision);
 		if (form.pad_type == BLANK)
 			c = ' ';
 		else
 			c = '0';
 		if (form.pad_side == RIGHT)
 		{
+
 			while (nb < form.min_weidth)
 			{
 				ft_putchar(c);
 				nb++;
 			}
-			nb += ft_putwstr_(w_str);
+			ft_putwstr_(w_str);
 		}
 		else
 		{
-			nb += ft_putwstr_(w_str);
+			ft_putwstr_(w_str);
 			while (nb < form.min_weidth)
 			{
 				ft_putchar(' ');
