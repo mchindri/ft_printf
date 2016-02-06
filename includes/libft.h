@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/25 09:46:16 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 14:51:16 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/06 17:14:28 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,19 @@ char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int n);
 
 void			ft_putchar(char c);
-void			ft_putwchar(wchar_t wc);
 void			ft_putstr(char const *s);
-void			ft_putwstr(wchar_t const *s);
 void			ft_putendl(char const *s);
 void			ft_putnbr(int n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
+
+void			ft_putwchar(wchar_t wc);
+void			ft_putwstr(wchar_t const *s);
+int				ft_wchar_len(wchar_t wc);
+size_t			ft_strwlen(wchar_t *w_str);
+wchar_t			*ft_strwdup(wchar_t *w_str);
 
 t_list			*ft_lstnew(void const *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));

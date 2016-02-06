@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strwlen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:00:34 by mchindri         ###   ########.fr       */
+/*   Created: 2016/02/06 17:13:03 by mchindri          #+#    #+#             */
+/*   Updated: 2016/02/06 17:13:25 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "libft.h"
 
-#define FORMAT "%15.4s", "42"
-int main()
+size_t	ft_strwlen(wchar_t *str)
 {
-	int sa=324;
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
+	size_t i;
+	size_t nb;
 
-//	ft_printf(FORMAT);
-//	STR("\n");
-	return (0);
+	nb = 0;
+	i = 0;
+	while (str[i])
+	{
+		nb += ft_wchar_len(str[i]);
+		i++;
+	}
+	return (nb);
 }

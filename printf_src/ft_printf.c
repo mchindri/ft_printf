@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/06 11:44:29 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 17:08:22 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/06 18:40:19 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int				ft_printf(const char *format, ...)
 	{
 		p = ft_copy_convertor(p, &str);
 		print_format = ft_set_format(str, ap);
-//		AFIS_FORM(print_format);
 		if (print_format.conv != 0)
 			printed_ch += ft_print_arg(print_format, ap);
 		p = ft_write_to_procent(p, &printed_ch);

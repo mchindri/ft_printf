@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strwdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:00:34 by mchindri         ###   ########.fr       */
+/*   Created: 2016/02/06 17:13:35 by mchindri          #+#    #+#             */
+/*   Updated: 2016/02/06 17:14:42 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "libft.h"
 
-#define FORMAT "%15.4s", "42"
-int main()
+wchar_t	*ft_strwdup(wchar_t *s1)
 {
-	int sa=324;
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
+	wchar_t *copy;
+	wchar_t *p;
+	wchar_t *q;
 
-//	ft_printf(FORMAT);
-//	STR("\n");
-	return (0);
+	if (s1 == NULL)
+		return (NULL);
+	copy = (wchar_t *)malloc(sizeof(wchar_t) * (ft_strwlen(s1) + 1));
+	p = (wchar_t *)s1;
+	q = copy;
+	while (*p != '\0')
+	{
+		*q = *p;
+		q++;
+		p++;
+	}
+	*q = '\0';
+	return (copy);
 }

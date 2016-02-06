@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_wchar_len.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:00:34 by mchindri         ###   ########.fr       */
+/*   Created: 2016/02/06 17:11:05 by mchindri          #+#    #+#             */
+/*   Updated: 2016/02/06 17:12:14 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
+#include "libft.h"
 
-#define FORMAT "%15.4s", "42"
-int main()
+int		ft_wchar_len(wchar_t wc)
 {
-	int sa=324;
-	char str[100] = "%$2hhd";
-	int n = 1;
-   	int a,b;	
-	printf("printf:\n");
-	a = printf(FORMAT);
-	printf("\t%d",a);
-	printf("\nft_printf\n");
-	b = ft_printf(FORMAT);
-	printf("\t%d", b);
-	printf("\n");
-
-//	ft_printf(FORMAT);
-//	STR("\n");
+	if (wc <= 127)
+		return (1);
+	else if (wc <= 2047)
+		return (2);
+	else if (wc <= 65535)
+		return (3);
+	else if (wc <= 1114111)
+		return (4);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:29:17 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 15:24:30 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/06 17:56:45 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_set_nb(wint_t wc, t_type_format form)
+int	ft_set_nb(wint_t wc, t_type_format form)
 {
 	if (form.len_mod[0] == '\0' || wc <= 127)
 		return (1);
@@ -25,25 +25,8 @@ int ft_set_nb(wint_t wc, t_type_format form)
 	return (0);
 }
 
-int	ft_print_char(t_type_format form, va_list *ap)
+int	ft_print_pad(t_type_format form, wint_t ch, int nb, char c)
 {
-	wint_t	ch;
-	int		nb;
-	char	c;
-
-	if (NULL == ft_strchr(CONVERTOR, form.conv) || form.conv == '%')
-		ch = form.conv;
-	else
-	{
-		ch = (wint_t)va_arg(ap[0], wint_t);
-		if (form.len_mod[1] == 'h')
-			ch = (wint_t)(unsigned char)ch;//verificat
-	}
-	nb = ft_set_nb(ch, form);
-	if (form.pad_type == BLANK)
-		c = ' ';	
-	else
-		c = '0';
 	if (form.pad_side == RIGHT)
 	{
 		while (nb < form.min_weidth)
@@ -69,4 +52,26 @@ int	ft_print_char(t_type_format form, va_list *ap)
 		}
 	}
 	return (nb);
+}
+
+int	ft_print_char(t_type_format form, va_list *ap)
+{
+	wint_t	ch;
+	int		nb;
+	char	c;
+
+	if (NULL == ft_strchr(CONVERTOR, form.conv) || form.conv == '%')
+		ch = form.conv;
+	else
+	{
+		ch = (wint_t)va_arg(ap[0], wint_t);
+		if (form.len_mod[1] == 'h')
+			ch = (wint_t)(unsigned char)ch;
+	}
+	nb = ft_set_nb(ch, form);
+	if (form.pad_type == BLANK)
+		c = ' ';
+	else
+		c = '0';
+	return (ft_print_pad(form, ch, nb, c));
 }

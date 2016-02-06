@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 09:50:01 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 15:24:05 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/06 18:39:21 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,15 @@ int	ft_print_arg(t_type_format format, va_list *ap);
 
 int	ft_print_number(t_type_format form, va_list *ap);
 int	ft_print_string(t_type_format form, va_list *ap);
+int	ft_print_wstring(t_type_format form, va_list *ap);
 int	ft_print_char(t_type_format form, va_list *ap);
 int	ft_print_fractional(t_type_format form, va_list *ap);
 char *ft_format_number(char *nbr, t_type_format form, int sign);
+
+void		ft_set_lenmod(char *str, t_type_format *form);
+void		ft_set_flags(char *str, t_type_format *form);
+void		ft_set_weidth(char *str, t_type_format *form, va_list *ap);
+void		ft_set_precision(char *str, t_type_format *form, va_list *ap);
 
 char *ft_itoa_base(uintmax_t n, int base);
 

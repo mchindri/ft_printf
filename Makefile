@@ -6,7 +6,7 @@
 #    By: mchindri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/25 09:45:00 by mchindri          #+#    #+#              #
-#    Updated: 2016/01/28 15:39:27 by mchindri         ###   ########.fr        #
+#    Updated: 2016/02/06 18:36:08 by mchindri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,10 @@ LIBFT_SRC = ./libft_src/ft_putstr.c \
 			./libft_src/ft_atoi.c\
 			./libft_src/ft_strlcat.c\
 			./libft_src/ft_putwchar.c\
-			./libft_src/ft_putwstr.c
+			./libft_src/ft_putwstr.c\
+			./libft_src/ft_wchar_len.c\
+			./libft_src/ft_strwlen.c\
+			./libft_src/ft_strwdup.c
 
 # :r! find ./printf_src -name \*.c -print
 
@@ -92,8 +95,10 @@ PRINTF_SRC = ./printf_src/ft_printf.c \
 			 ./printf_src/print_functions/ft_print_char.c\
 			 ./printf_src/print_functions/ft_format_number.c\
 			 ./printf_src/print_functions/ft_print_string.c\
+			 ./printf_src/print_functions/ft_print_wstring.c\
 			 ./printf_src/ft_select_arg.c\
-			 ./printf_src/ft_itoa_base.c
+			 ./printf_src/ft_itoa_base.c\
+			 ./printf_src/ft_set_functions.c
 
 # make ofiles
 # :r! cat | ls -C *.o
@@ -124,7 +129,8 @@ OFILES = aux.o			ft_memmove.o		ft_strdup.o \
 		  ft_memcmp.o		ft_strcmp.o		ft_toupper.o\
 		  ft_memcpy.o		ft_strcpy.o		ft_putwchar.o\
 		  ft_memdel.o		ft_strdel.o		ft_format_number.o\
-		  ft_putwstr.o
+		  ft_putwstr.o		ft_print_wstring.o	ft_wchar_len.o\
+		  ft_strwlen.o		ft_strwdup.o	ft_set_functions.o
 
 ###
 FLAGS =

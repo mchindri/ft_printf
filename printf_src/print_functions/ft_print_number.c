@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:26:25 by mchindri          #+#    #+#             */
-/*   Updated: 2016/01/28 12:17:44 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/06 17:52:37 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-uintmax_t	ft_conv_unsigned(char *len_mod, va_list *ap)
+uintmax_t		ft_conv_unsigned(char *len_mod, va_list *ap)
 {
 	uintmax_t	n;
 
@@ -36,9 +36,8 @@ uintmax_t	ft_conv_unsigned(char *len_mod, va_list *ap)
 	return (n);
 }
 
-uintmax_t	ft_conv_signed(char *len_mod, va_list *ap, int *sign)
+uintmax_t		ft_conv_signed(char *len_mod, va_list *ap, int *sign)
 {
-	uintmax_t	n;
 	intmax_t	n_neg;
 
 	if (len_mod[0] == 'h')
@@ -52,24 +51,21 @@ uintmax_t	ft_conv_signed(char *len_mod, va_list *ap, int *sign)
 		n_neg = (intmax_t)va_arg(ap[0], long);
 	else if (len_mod[0] == 'l' && len_mod[1] == 'l')
 		n_neg = (intmax_t)va_arg(ap[0], long long);
-	else if (len_mod[0] == 'j')
-		n_neg = (intmax_t)va_arg(ap[0], intmax_t);
-	else if (len_mod[0] == 'z')
+	else if (len_mod[0] == 'j' || len_mod[0] == 'z')
 		n_neg = (intmax_t)va_arg(ap[0], intmax_t);
 	else
 		n_neg = (intmax_t)va_arg(ap[0], int);
+	*sign = 0;
 	if (n_neg < 0)
 	{
-		n = n_neg * (-1);
 		*sign = 1;
-		return (n);
+		return (n_neg * (-1));
 	}
-	*sign = 0;
-	n = n_neg;
-	return (n);
+	else
+		return (n_neg);
 }
 
-void	ft_upper(char *str)
+void			ft_upper(char *str)
 {
 	while (*str)
 	{
@@ -79,22 +75,10 @@ void	ft_upper(char *str)
 	}
 }
 
-int		ft_print_number(t_type_format form, va_list *ap)
+char			*ft_convert_in_str(uintmax_t n, t_type_format form)
 {
-	//ft_putstr("Is number\n");
-	uintmax_t	n;
-	int			sign;
-	char		*str;
-	//int			nbr;
+	char *str;
 
-	if (ft_strchr("diDI", form.conv))
-		n = ft_conv_signed(form.len_mod, ap, &sign);
-	else
-	{
-		sign = 0;
-		n = ft_conv_unsigned(form.len_mod, ap);
-	}
-	//	dprintf(2, "%ju\n",n);
 	if (ft_strchr("idu", form.conv))
 		str = ft_itoa_base(n, 10);
 	else if (form.conv == 'o' || form.conv == 'O')
@@ -110,11 +94,30 @@ int		ft_print_number(t_type_format form, va_list *ap)
 		ft_upper(str);
 	}
 	else
-		str =ft_itoa_base(n, 16);
-	str = ft_format_number(str, form ,sign);
+		str = ft_itoa_base(n, 16);
+	return (str);
+}
+
+int				ft_print_number(t_type_format form, va_list *ap)
+{
+	uintmax_t	n;
+	int			sign;
+	char		*str;
+	int			size;
+
+	if (ft_strchr("diDI", form.conv))
+		n = ft_conv_signed(form.len_mod, ap, &sign);
+	else
+	{
+		sign = 0;
+		n = ft_conv_unsigned(form.len_mod, ap);
+	}
+	str = ft_convert_in_str(n, form);
+	str = ft_format_number(str, form, sign);
 	if (str == NULL)
 		return (-1);
 	ft_putstr(str);
-	//free(str);
-	return (ft_strlen(str));
+	size = ft_strlen(str);
+	free(str);
+	return (size);
 }

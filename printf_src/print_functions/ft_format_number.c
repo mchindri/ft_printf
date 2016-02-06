@@ -6,28 +6,32 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/27 15:53:50 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 16:54:03 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/06 18:14:01 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_is_unsigned(char ch)
+int		ft_is_unsigned(char ch)
 {
 	if (ch == 'o' || ch == 'u' || ch == 'x' || ch == 'U' || ch == 'X')
 		return (1);
 	return (0);
 }
 
-int ft_calc_size(char *nbr, t_type_format form, int sign)
+/*
+**	thousand_group
+**	da
+*/
+
+int		ft_calc_size(char *nbr, t_type_format form, int sign)
 {
 	int size;
 	int nb_size;
 
-	size = ft_strlen(nbr); 
-	//thousand_group
+	size = ft_strlen(nbr);
 	nb_size = size;
-	if (((form.sign == SIGNED || form.space == YES) && 
+	if (((form.sign == SIGNED || form.space == YES) &&
 				!ft_is_unsigned(form.conv)) || sign == 1)
 		size++;
 	if (form.alternate == YES && (nbr[0] != '0' || form.pointer == YES ||
@@ -90,14 +94,12 @@ char	*ft_format_number(char *nbr, t_type_format form, int sign)
 	else
 		ft_strcpy(formated_nbr + i, nbr);
 	start = ft_set_start(form, sign);
-// de aici e nou
 	j = 0;
 	if (form.conv == 'o' && form.alternate == YES)
 		nbr_len++;
 	while (nbr_len + j < form.precision)
 		formated_nbr[i - j++ - 1] = '0';
 	i -= j + 1;
-//	NB(form.precision)
 	if (form.precision == -1)
 		if (form.pad_side == RIGHT && form.pad_type == ZERO)
 			while (i >= start)
@@ -123,38 +125,5 @@ char	*ft_format_number(char *nbr, t_type_format form, int sign)
 		ft_memset(formated_nbr + ft_strlen(formated_nbr), ' ', i + 1);
 	}
 	free(nbr);
-	/*
-	j = 0;
-	while (nbr_len + j < form.precision ||
-			(form.precision < 0 && form.pad_type == ZERO &&
-			 form.pad_side == RIGHT && nbr_len + j + sign < form.min_weidth))
-		if (form.alternate == YES && form.pad_type == ZERO && i - j - 1 == 1)
-			break;
-		else
-			formated_nbr[i - j++ - 1] = '0';
-	i -= j + 1;
-	if (form.alternate == YES && (!(form.conv == 'o' &&
-					formated_nbr[i + 1] == '0') || form.pointer == YES))
-	{
-		if (form.conv == 'x')
-			formated_nbr[i--] = 'x';
-		else if (form.conv == 'X')
-			formated_nbr[i--] = 'X';
-		if (ft_strchr("xXo", form.conv))
-			formated_nbr[i--] = '0';
-	}
-	if (sign == 1)
-		formated_nbr[i--] = '-';
-	else if (form.sign == SIGNED && !ft_is_unsigned(form.conv))
-		formated_nbr[i--] = '+';
-	else if (form.space == YES)
-		i--;
-	if (form.pad_side == LEFT && i >= 0)
-	{
-		ft_strcpy(formated_nbr, formated_nbr + i + 1);
-		ft_memset(formated_nbr + ft_strlen(formated_nbr), ' ', i + 1);
-	}
-	free(nbr);
-*/
 	return (formated_nbr);
 }
