@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/09 16:57:04 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 18:39:13 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 10:53:09 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	se pot gasi si $ si in alte locuri in afara de la inceput
 */
 
-int				ft_is_positional_arg(char *str)
+static int		ft_is_positional_arg(char *str)
 {
 	while (*str)
 	{
@@ -29,7 +29,7 @@ int				ft_is_positional_arg(char *str)
 	return (0);
 }
 
-void			ft_set_special_conv(t_type_format *form)
+static void		ft_set_special_conv(t_type_format *form)
 {
 	if (ft_strchr("DOU", form->conv))
 	{

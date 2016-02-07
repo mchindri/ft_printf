@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_uitoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/18 13:20:48 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/01 16:55:54 by mchindri         ###   ########.fr       */
+/*   Created: 2016/02/07 10:47:51 by mchindri          #+#    #+#             */
+/*   Updated: 2016/02/07 11:08:03 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	ft_create_str(char *str, int size, uintmax_t nb, int base)
+static void	ft_create_str(char *str, int size, uintmax_t nb, int base)
 {
 	int aux;
 
@@ -31,7 +31,7 @@ void	ft_create_str(char *str, int size, uintmax_t nb, int base)
 		}
 }
 
-char	*ft_alloc_str(uintmax_t nb, int base)
+static char	*ft_alloc_str(uintmax_t nb, int base)
 {
 	int			size;
 	uintmax_t	nb_cpy;
@@ -54,7 +54,7 @@ char	*ft_alloc_str(uintmax_t nb, int base)
 	return (str);
 }
 
-char	*ft_itoa_base(uintmax_t value, int base)
+char		*ft_uitoa_base(uintmax_t value, int base)
 {
 	char		*str;
 

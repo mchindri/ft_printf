@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 10:16:55 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:00:34 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 11:14:47 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define FORMAT "%15.4s", "42"
+#define FORMAT "{%f}", 342.3
 int main()
 {
 	int sa=324;

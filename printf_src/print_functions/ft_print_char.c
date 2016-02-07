@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:29:17 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:56:45 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 11:09:35 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_set_nb(wint_t wc, t_type_format form)
+static int	ft_set_nb(wint_t wc, t_type_format form)
 {
 	if (form.len_mod[0] == '\0' || wc <= 127)
 		return (1);
@@ -25,7 +25,7 @@ int	ft_set_nb(wint_t wc, t_type_format form)
 	return (0);
 }
 
-int	ft_print_pad(t_type_format form, wint_t ch, int nb, char c)
+static int	ft_print_pad(t_type_format form, wint_t ch, int nb, char c)
 {
 	if (form.pad_side == RIGHT)
 	{
@@ -54,7 +54,7 @@ int	ft_print_pad(t_type_format form, wint_t ch, int nb, char c)
 	return (nb);
 }
 
-int	ft_print_char(t_type_format form, va_list *ap)
+int			ft_print_char(t_type_format form, va_list *ap)
 {
 	wint_t	ch;
 	int		nb;

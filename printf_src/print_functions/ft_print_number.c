@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 15:26:25 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:52:37 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 11:08:17 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-uintmax_t		ft_conv_unsigned(char *len_mod, va_list *ap)
+static uintmax_t	ft_conv_unsigned(char *len_mod, va_list *ap)
 {
 	uintmax_t	n;
 
@@ -36,7 +36,7 @@ uintmax_t		ft_conv_unsigned(char *len_mod, va_list *ap)
 	return (n);
 }
 
-uintmax_t		ft_conv_signed(char *len_mod, va_list *ap, int *sign)
+static uintmax_t	ft_conv_signed(char *len_mod, va_list *ap, int *sign)
 {
 	intmax_t	n_neg;
 
@@ -65,7 +65,7 @@ uintmax_t		ft_conv_signed(char *len_mod, va_list *ap, int *sign)
 		return (n_neg);
 }
 
-void			ft_upper(char *str)
+static void			ft_upper(char *str)
 {
 	while (*str)
 	{
@@ -75,30 +75,30 @@ void			ft_upper(char *str)
 	}
 }
 
-char			*ft_convert_in_str(uintmax_t n, t_type_format form)
+static char			*ft_convert_in_str(uintmax_t n, t_type_format form)
 {
 	char *str;
 
 	if (ft_strchr("idu", form.conv))
-		str = ft_itoa_base(n, 10);
+		str = ft_uitoa_base(n, 10);
 	else if (form.conv == 'o' || form.conv == 'O')
 	{
 		if (form.len_mod[0] == 'h' && form.len_mod[1] == 0)
-			str = ft_itoa_base((unsigned short)n, 8);
+			str = ft_uitoa_base((unsigned short)n, 8);
 		else
-			str = ft_itoa_base(n, 8);
+			str = ft_uitoa_base(n, 8);
 	}
 	else if (form.conv == 'X')
 	{
-		str = ft_itoa_base(n, 16);
+		str = ft_uitoa_base(n, 16);
 		ft_upper(str);
 	}
 	else
-		str = ft_itoa_base(n, 16);
+		str = ft_uitoa_base(n, 16);
 	return (str);
 }
 
-int				ft_print_number(t_type_format form, va_list *ap)
+int					ft_print_number(t_type_format form, va_list *ap)
 {
 	uintmax_t	n;
 	int			sign;

@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 18:37:18 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 18:39:19 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 10:24:19 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,28 +93,21 @@ void			ft_set_precision(char *str, t_type_format *form, va_list *ap)
 
 	n = -1;
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != '.')
+		i++;
+	if (str[i])
 	{
-		while (str[i] && str[i] != '.')
-			i++;
-		if (str[i])
+		i++;
+		if (ft_isdigit(str[i]))
+			n = ft_atoi(str + i);
+		else if (str[i] == '*')
 		{
-			i++;
-			if (ft_isdigit(str[i]))
-			{
-				n = ft_atoi(str + i);
-				while (ft_isdigit(str[i]))
-					i++;
-			}
-			else if (str[i] == '*')
-			{
-				n = ft_select_param(str, &i, ap);
-				if (n < 0)
-					n = -1;
-			}
-			else
-				n = 0;
+			n = ft_select_param(str, &i, ap);
+			if (n < 0)
+				n = -1;
 		}
+		else
+			n = 0;
 	}
 	form->precision = n;
 }

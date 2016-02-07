@@ -6,13 +6,13 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/06 16:43:04 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:29:19 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 11:09:23 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			ft_putwstr_(wchar_t *str)
+static int		ft_putwstr_(wchar_t *str)
 {
 	size_t	i;
 	int		nb;
@@ -28,7 +28,7 @@ int			ft_putwstr_(wchar_t *str)
 	return (nb);
 }
 
-int			ft_cutstr(wchar_t *str, int len)
+static int		ft_cutstr(wchar_t *str, int len)
 {
 	int i;
 	int size;
@@ -44,7 +44,7 @@ int			ft_cutstr(wchar_t *str, int len)
 	return (size);
 }
 
-static int	ft_print_pad(t_type_format form, wchar_t *w_str, char c, int nb)
+static int		ft_print_pad(t_type_format form, wchar_t *w_str, char c, int nb)
 {
 	if (form.pad_side == RIGHT)
 	{
@@ -68,7 +68,7 @@ static int	ft_print_pad(t_type_format form, wchar_t *w_str, char c, int nb)
 	return (nb);
 }
 
-int			ft_print_wstring(t_type_format form, va_list *ap)
+int				ft_print_wstring(t_type_format form, va_list *ap)
 {
 	wchar_t *w_str;
 	int		nb;

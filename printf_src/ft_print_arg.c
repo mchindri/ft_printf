@@ -6,20 +6,20 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/10 14:02:57 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 16:01:43 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 11:07:39 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_is_number(t_type_format form)
+static int	ft_is_number(t_type_format form)
 {
 	if (ft_strchr("diouxXp", form.conv))
 		return (1);
 	return (0);
 }
 
-int	ft_is_char(t_type_format form)
+static int	ft_is_char(t_type_format form)
 {
 	if (form.conv == 'c' || NULL == ft_strchr(CONVERTOR, form.conv) ||
 			form.conv == '%')
@@ -27,14 +27,14 @@ int	ft_is_char(t_type_format form)
 	return (0);
 }
 
-int	ft_is_fractional(t_type_format form)
+static int	ft_is_fractional(t_type_format form)
 {
 	if (ft_strchr("aAeEgG", form.conv))
 		return (1);
 	return (0);
 }
 
-int	ft_print_arg(t_type_format format, va_list *ap)
+int			ft_print_arg(t_type_format format, va_list *ap)
 {
 	if (ft_is_number(format))
 		return (ft_print_number(format, ap));

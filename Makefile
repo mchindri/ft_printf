@@ -6,7 +6,7 @@
 #    By: mchindri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/25 09:45:00 by mchindri          #+#    #+#              #
-#    Updated: 2016/02/06 18:36:08 by mchindri         ###   ########.fr        #
+#    Updated: 2016/02/07 11:23:49 by mchindri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,7 +89,6 @@ PRINTF_SRC = ./printf_src/ft_printf.c \
 			 ./printf_src/ft_is_positional_arg.c\
 			 ./printf_src/ft_set_format.c\
 			 ./printf_src/ft_print_arg.c\
-			 ./printf_src/aux.c\
 			 ./printf_src/print_functions/ft_print_number.c\
 			 ./printf_src/print_functions/ft_print_fractional.c\
 			 ./printf_src/print_functions/ft_print_char.c\
@@ -97,13 +96,13 @@ PRINTF_SRC = ./printf_src/ft_printf.c \
 			 ./printf_src/print_functions/ft_print_string.c\
 			 ./printf_src/print_functions/ft_print_wstring.c\
 			 ./printf_src/ft_select_arg.c\
-			 ./printf_src/ft_itoa_base.c\
+			 ./printf_src/ft_uitoa_base.c\
 			 ./printf_src/ft_set_functions.c
 
 # make ofiles
 # :r! cat | ls -C *.o
 
-OFILES = aux.o			ft_memmove.o		ft_strdup.o \
+OFILES =			ft_memmove.o		ft_strdup.o \
 		  ft_absd.o		ft_memset.o		ft_strequ.o\
 		  ft_absi.o		ft_powi.o		ft_striter.o\
 		  ft_atoi.o		ft_print_arg.o		ft_striteri.o\
@@ -116,7 +115,7 @@ OFILES = aux.o			ft_memmove.o		ft_strdup.o \
 		  ft_isdigit.o		ft_putchar_fd.o		ft_strncmp.o\
 		  ft_isprint.o		ft_putendl.o		ft_strncpy.o\
 		  ft_itoa.o		ft_putendl_fd.o		ft_strnequ.o\
-		  ft_itoa_base.o		ft_putnbr.o		ft_strnew.o\
+		  ft_uitoa_base.o		ft_putnbr.o		ft_strnew.o\
 		  ft_lstadd.o		ft_putnbr_fd.o		ft_strnstr.o\
 		  ft_lstdel.o		ft_putstr.o		ft_strrchr.o\
 		  ft_lstdelone.o		ft_putstr_fd.o		ft_strrev.o\
@@ -133,12 +132,12 @@ OFILES = aux.o			ft_memmove.o		ft_strdup.o \
 		  ft_strwlen.o		ft_strwdup.o	ft_set_functions.o
 
 ###
-FLAGS =
+FLAG =
 ###
-FLAG = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 ###
 
-MAIN = main.c
+MAIN = test.c
 NAME = libftprintf.a
 INCLUDES = -I includes -I debug
 
