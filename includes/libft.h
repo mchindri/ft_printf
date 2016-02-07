@@ -6,13 +6,15 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/25 09:46:16 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/06 17:14:28 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/02/07 11:47:07 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "ft_printf.h"
+# include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <wchar.h>
@@ -100,5 +102,6 @@ int				ft_sqrt(int n);
 double			ft_absd(int n);
 void			ft_swap(int *a, int *b);
 char			*ft_strrev(char *s);
+char			*ft_itoa_base(unsigned value, int base);
 
 #endif

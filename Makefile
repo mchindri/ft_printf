@@ -6,7 +6,7 @@
 #    By: mchindri <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/10/25 09:45:00 by mchindri          #+#    #+#              #
-#    Updated: 2016/02/07 11:23:49 by mchindri         ###   ########.fr        #
+#    Updated: 2016/02/07 11:49:03 by mchindri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,9 @@ LIBFT_SRC = ./libft_src/ft_putstr.c \
 			./libft_src/ft_putwstr.c\
 			./libft_src/ft_wchar_len.c\
 			./libft_src/ft_strwlen.c\
-			./libft_src/ft_strwdup.c
+			./libft_src/ft_strwdup.c\
+			./libft_src/ft_itoa_base.c\
+			./libft_src/get_next_line.c
 
 # :r! find ./printf_src -name \*.c -print
 
@@ -102,7 +104,7 @@ PRINTF_SRC = ./printf_src/ft_printf.c \
 # make ofiles
 # :r! cat | ls -C *.o
 
-OFILES =			ft_memmove.o		ft_strdup.o \
+OFILES =	ft_memmove.o		ft_strdup.o \
 		  ft_absd.o		ft_memset.o		ft_strequ.o\
 		  ft_absi.o		ft_powi.o		ft_striter.o\
 		  ft_atoi.o		ft_print_arg.o		ft_striteri.o\
@@ -129,7 +131,8 @@ OFILES =			ft_memmove.o		ft_strdup.o \
 		  ft_memcpy.o		ft_strcpy.o		ft_putwchar.o\
 		  ft_memdel.o		ft_strdel.o		ft_format_number.o\
 		  ft_putwstr.o		ft_print_wstring.o	ft_wchar_len.o\
-		  ft_strwlen.o		ft_strwdup.o	ft_set_functions.o
+		  ft_strwlen.o		ft_strwdup.o	ft_set_functions.o\
+		  ft_itoa_base.o	get_next_line.o
 
 ###
 FLAG =
@@ -137,7 +140,7 @@ FLAG =
 FLAGS = -Wall -Wextra -Werror
 ###
 
-MAIN = test.c
+MAIN = main.c
 NAME = libftprintf.a
 INCLUDES = -I includes -I debug
 
