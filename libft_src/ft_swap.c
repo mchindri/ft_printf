@@ -6,15 +6,17 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/22 14:08:25 by mchindri          #+#    #+#             */
-/*   Updated: 2015/12/22 14:09:09 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/03/18 10:24:42 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swap(int *a, int *b)
-{
-	int aux;
+#include "libft.h"
 
-	aux = *a;
-	*a = *b;
-	*b = aux;
+void	ft_swap(void *a, void *b)
+{
+	void *aux;
+
+	ft_memcpy(aux, a, sizeof(a));
+	ft_memcpy(a, b, sizeof(b));
+	ft_memcpy(b, aux, sizeof(aux));
 }

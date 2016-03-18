@@ -6,7 +6,7 @@
 /*   By: mchindri <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/25 09:46:16 by mchindri          #+#    #+#             */
-/*   Updated: 2016/02/07 11:47:07 by mchindri         ###   ########.fr       */
+/*   Updated: 2016/03/18 10:25:28 by mchindri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int				ft_powi(int x, int k);
 int				ft_absi(int n);
 int				ft_sqrt(int n);
 double			ft_absd(int n);
-void			ft_swap(int *a, int *b);
+void			ft_swap(void *a, void *b);
 char			*ft_strrev(char *s);
 char			*ft_itoa_base(unsigned value, int base);
 
